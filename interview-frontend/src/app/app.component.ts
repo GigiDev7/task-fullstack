@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
 
   cities: City[] = [];
   totalPages: number = 0;
+  totalCities: number = 0;
 
   page: number = 1;
   query: string = '';
@@ -35,16 +36,22 @@ export class AppComponent implements OnInit {
     });
   }
 
+  trackBy(index: number, el: City) {
+    return el.uuid;
+  }
+
   ngOnInit(): void {
     this.route.queryParams.subscribe({
       next: (params) => {
         const query = params['query'] || '';
         const page = params['page'] || 1;
+        this.query = query;
+        this.page = page;
         this.appService.getCities(query, page).subscribe({
           next: (res) => {
-            console.log(res);
             this.cities = res.data;
             this.totalPages = res.totalPages;
+            this.totalCities = res.totalCities;
           },
         });
       },

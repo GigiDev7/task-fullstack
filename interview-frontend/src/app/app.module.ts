@@ -4,9 +4,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { CityCardComponent } from './city-card/city-card.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, CityCardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

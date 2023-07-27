@@ -10,7 +10,7 @@ export class AppController {
   getCities(
     @Query('query') query: string,
     @Query('page', ParseIntPipe) page: number,
-  ): Promise<{ data: City[]; totalPages: number }> {
+  ): Promise<{ data: City[]; totalPages: number; totalCities: number }> {
     return this.appService.getCities(query, page);
   }
 }
