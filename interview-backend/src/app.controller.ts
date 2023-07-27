@@ -1,12 +1,16 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, ParseIntPipe, Query } from '@nestjs/common';
 import { AppService } from './app.service';
+import { City } from './interface';
 
-@Controller()
+@Controller('cities')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  getCities(
+    @Query('query') query: string,
+    @Query('page', ParseIntPipe) page: number,
+  ): Promise<{ data: City[]; totalPages: number }> {
+    return this.appService.getCities(query, page);
   }
 }
