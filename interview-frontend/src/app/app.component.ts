@@ -30,6 +30,14 @@ export class AppComponent implements OnInit {
     });
   }
 
+  handleClearClick() {
+    this.page = 1;
+    this.query = '';
+    this.router.navigate([], {
+      queryParams: { page: this.page, query: this.query },
+    });
+  }
+
   handlePageChange(event: PageEvent) {
     this.router.navigate([], {
       queryParams: { page: event.pageIndex + 1, query: this.query },
