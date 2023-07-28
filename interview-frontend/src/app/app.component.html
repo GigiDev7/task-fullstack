@@ -1,14 +1,26 @@
-<div class="flex flex-col items-center">
-  <div>
-    <input type="text" />
-    <button (click)="handleSearchClick()">Search</button>
+<div class="flex flex-col items-center gap-12 justify-center h-full">
+  <div class="flex gap-4">
+    <input
+      [(ngModel)]="query"
+      class="border-[1px] border-gray-300 rounded-md py-1 pl-1 w-80"
+      placeholder="Search for cities"
+      type="text"
+    />
+    <button
+      class="bg-blue-500 text-white hover:bg-blue-600 py-2 px-6 rounded-md"
+      (click)="handleSearchClick()"
+    >
+      Search
+    </button>
   </div>
 
-  <div>
-    <app-city-card
-      *ngFor="let city of cities; trackBy: trackBy"
-      [city]="city"
-    ></app-city-card>
+  <div class="w-[30%]">
+    <ul class="flex flex-col gap-2">
+      <app-city-card
+        *ngFor="let city of cities; trackBy: trackBy"
+        [city]="city"
+      ></app-city-card>
+    </ul>
   </div>
 
   <div>
@@ -18,7 +30,7 @@
       [pageSize]="5"
       aria-label="Select page"
       [hidePageSize]="true"
-      [ariaHidden]="true"
+      [pageIndex]="page - 1"
     >
     </mat-paginator>
   </div>
